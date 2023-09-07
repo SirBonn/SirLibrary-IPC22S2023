@@ -1,0 +1,47 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ggnc.sirlibrary.Models.DataBase.LoanRequestsDAOs;
+
+import ggnc.sirlibrary.Models.DataBase.DBConectionManager;
+import ggnc.sirlibrary.Utils.InvalidActionException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+/**
+ *
+ * @author sirbon
+ */
+public class UpdateLoanReqDetails {
+    
+        public void setUserReceiver(int receiverCode, int requestCode) throws InvalidActionException {
+
+        String UPDATE_RECEIVER_LOANREQDETAIL = "UPDATE loan_requests_detail SET request_receiver = ? WHERE code_request = ?";
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try {
+            connection = DBConectionManager.getConnection();
+            preparedStatement = connection.prepareStatement(UPDATE_RECEIVER_LOANREQDETAIL);
+
+            preparedStatement.setInt(1, receiverCode);
+            preparedStatement.setInt(2, requestCode);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            throw new InvalidActionException("ocurrio un error en la DB" + e.getMessage());
+
+        } finally {
+
+            DBConectionManager.close(connection);
+            DBConectionManager.close(preparedStatement);
+
+        }
+    }
+    
+}
