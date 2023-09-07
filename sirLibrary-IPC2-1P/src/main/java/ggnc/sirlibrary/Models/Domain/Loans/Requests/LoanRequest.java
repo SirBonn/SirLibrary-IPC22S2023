@@ -85,10 +85,15 @@ public class LoanRequest {
 
     public String getFormatedDate() {
 
-        LocalDate localDate = this.reqDate.toLocalDate();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String fechaStr = localDate.format(formatter);
+        if (reqDate != null) {
 
-        return fechaStr;
+            LocalDate localDate = this.reqDate.toLocalDate();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String fechaStr = localDate.format(formatter);
+
+            return fechaStr;
+        } else {
+            return "";
+        }
     }
 }

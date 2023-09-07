@@ -35,7 +35,13 @@ public class InsertLoanDetail {
             } else {
                 preparedStatement.setInt(3, loanDetail.getFinisher().getCode());
             }
-            preparedStatement.setString(4, loanDetail.getFormatedRetrieveDate());
+            if (loanDetail.getFormatedRetrieveDate().equals("")) {
+                            preparedStatement.setString(4, null);
+
+            } else {
+                            preparedStatement.setString(4, loanDetail.getFormatedRetrieveDate());
+            }
+            
             preparedStatement.setDouble(5, loanDetail.getLate_fee());
             preparedStatement.executeUpdate();
 

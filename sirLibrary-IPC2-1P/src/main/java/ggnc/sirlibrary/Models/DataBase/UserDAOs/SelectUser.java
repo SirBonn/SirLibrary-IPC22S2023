@@ -189,7 +189,7 @@ public class SelectUser {
             connection = DBConectionManager.getConnection();
 
             for (String list : userTables) {
-                String SQL_SELECT_BY_USER = "SELECT * FROM " + list + " WHERE email = ? AND userpassword =?";
+                String SQL_SELECT_BY_USER = "SELECT * FROM " + list + " WHERE username = ? AND userpassword =?";
                 preparedStatement = connection.prepareStatement(SQL_SELECT_BY_USER);
                 preparedStatement.setString(1, user.getEmail());
                 preparedStatement.setString(2, user.getUserpswrd());

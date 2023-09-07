@@ -42,14 +42,14 @@ CREATE TABLE books(
 
 CREATE TABLE receptionists(
     code INT UNIQUE NOT NULL,
-    email VARCHAR(50) UNIQUE NOT NULL, 
+    email VARCHAR(50) NOT NULL, 
     forename VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
     userpassword VARCHAR(65) NOT NULL,
     isActive TINYINT(2) DEFAULT 1,
     lvl_acces TINYINT DEFAULT 1, /*default 1: receptionist rol*/
     library INT NOT NULL,
-    PRIMARY KEY (code, email),
+    PRIMARY KEY (code),
     CONSTRAINT receptionist_lib_fk 
     FOREIGN KEY (library)
     REFERENCES libraries(code)
@@ -57,19 +57,19 @@ CREATE TABLE receptionists(
 
 CREATE TABLE dealers(
     code INT UNIQUE NOT NULL,
-    email VARCHAR(50) UNIQUE NOT NULL, 
+    email VARCHAR(50) NOT NULL, 
     forename VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
     userpassword VARCHAR(65) NOT NULL,
     isActive TINYINT(2) DEFAULT 1,
     lvl_acces TINYINT DEFAULT 2, /*default 2: dealer rol*/
     deliveries INT DEFAULT 0,
-    PRIMARY KEY (code, email)
+    PRIMARY KEY (code)
 );
 
 CREATE TABLE users(
     code INT UNIQUE NOT NULL,
-    email VARCHAR(50) UNIQUE NOT NULL, 
+    email VARCHAR(50) NOT NULL, 
     forename VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
     userpassword VARCHAR(65) NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE users(
     lvl_acces TINYINT DEFAULT 3, /*default 3: costumer rol*/
     amount DECIMAL(6,2) DEFAULT 0,
     max_books INT DEFAULT 5,
-    PRIMARY KEY (code, email)
+    PRIMARY KEY (code)
 );
 
 CREATE TABLE vip_users(
@@ -106,7 +106,7 @@ CREATE TABLE loan_requests_detail(
     user INT NOT NULL,
     request_receiver INT,
     type_request TINYINT NOT NULL, /*1 store pickup, 2 home service*/
-    retrieved_date INT NOT NULL,
+    retrieved_date INT,
     assigned_dealer INT DEFAULT NULL, 
     PRIMARY KEY (code_request),
     CONSTRAINT detail_reques_fk
@@ -218,7 +218,7 @@ CREATE TABLE loan_details(
     loan_code INT NOT NULL,
     user_code INT NOT NULL,
     loan_finisher INT,
-    retrieved_date DATETIME NOT NULL,
+    retrieved_date DATETIME,
     late_fee DECIMAL(6.2) NOT NULL,
     PRIMARY KEY (loan_code),
     CONSTRAINT loan_code_fk

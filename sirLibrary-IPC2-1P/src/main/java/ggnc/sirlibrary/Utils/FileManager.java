@@ -59,13 +59,13 @@ public class FileManager {
     public void dataLoader() throws InvalidActionException {
 
         try {
-            loadCategories();
+             loadCategories();
             loadBooks();
             loadLibraries();
             loadUsers();
             loadLoanRequests();
             loadLoans();
-            
+
         } catch (InvalidActionException ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
@@ -99,13 +99,13 @@ public class FileManager {
         JsonNode usuariosJsonNode = rootNode.get("admin");
 
         for (JsonNode usuarioJsonNode : usuariosJsonNode) {
-
-            int codigo = usuarioJsonNode.get("codigo").asInt();
+            System.out.println(usuarioJsonNode.toString());
+            int code = usuarioJsonNode.get("codigo").asInt();
             String nombre = usuarioJsonNode.get("nombre").asText();
             String username = usuarioJsonNode.get("username").asText();
             String password = usuarioJsonNode.get("password").asText();
             String email = usuarioJsonNode.get("email").asText();
-            Admin admin = new Admin(codigo, email, nombre, username, password);
+            Admin admin = new Admin(code, email, nombre, username, password);
             admins.add(admin);
 
         }

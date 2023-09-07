@@ -2,7 +2,7 @@
 
 <form class="formularioLogin needs-validation" id="formularioLogin" method="post" name="user-login" action="/sirLibrary-IPC2-1P/loginServlet"> 
     <div class="form-outline form-white mb-4">
-        <input type="email" id="emailAddress" name="emailAddress"class="form-control form-control-lg" />
+        <input type="text" id="emailAddress" name="emailAddress"class="form-control form-control-lg" />
         <label class="form-label" for="emailAddress">Email</label>
     </div>
 

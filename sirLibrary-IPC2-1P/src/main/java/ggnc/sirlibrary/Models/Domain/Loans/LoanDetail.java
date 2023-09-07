@@ -51,8 +51,6 @@ public class LoanDetail {
         this.late_fee = late_fee;
     }
 
-    
-    
     private Date setRetDate(int days) {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_MONTH, days); // Sumar la duración en días
@@ -68,12 +66,16 @@ public class LoanDetail {
     }
 
     public String getFormatedRetrieveDate() {
+        if (retrievedDate != null) {
 
-        LocalDate localDate = this.retrievedDate.toLocalDate();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String fechaStr = localDate.format(formatter);
+            LocalDate localDate = this.retrievedDate.toLocalDate();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String fechaStr = localDate.format(formatter);
 
-        return fechaStr;
+            return fechaStr;
+        } else {
+            return "";
+        }
     }
 
 }
